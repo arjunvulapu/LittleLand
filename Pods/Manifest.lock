@@ -1,0 +1,40 @@
+PODS:
+  - Alamofire (4.7.3)
+  - FSCalendar (2.7.9)
+  - IQKeyboardManagerSwift (6.1.1)
+  - Kingfisher (3.13.1)
+  - SVProgressHUD (2.2.5)
+  - TTGSnackbar (1.7.3)
+  - Whisper (6.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - FSCalendar
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 3.0)
+  - SVProgressHUD
+  - TTGSnackbar
+  - Whisper
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - FSCalendar
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - SVProgressHUD
+    - TTGSnackbar
+    - Whisper
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TTGSnackbar: a66e929fd17d662152ec0964990a86e966310edb
+  Whisper: 169760fc4bab0abf24d5529f9276f95c25cf1025
+
+PODFILE CHECKSUM: 56c26bbf132601d40654665a58268011c3036c17
+
+COCOAPODS: 1.5.0
