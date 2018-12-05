@@ -48,7 +48,9 @@ class HomeVC: UIViewController, FSPagerViewDelegate, FSPagerViewDataSource {
     //MARK:- ViewDidload
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let alert = UIAlertController(title: "Alert", message: ApiUtillity.sharedInstance.getIphoneData(key: "PUSH_TOKEN"), preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
         self.navigationController?.isNavigationBarHidden = true
         
         if ApiUtillity.sharedInstance.getLanguageData(key: "lbl_teachers").isEmpty {

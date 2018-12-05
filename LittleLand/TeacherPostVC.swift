@@ -399,7 +399,7 @@ class TeacherPostVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource,
                 }
                 else {
                     cell.imageview_Category.image = UIImage(named: "ic_view_post")
-                    cell.lbl_CategoryName.text = ApiUtillity.sharedInstance.getLanguageData(key: "lbl_view_post").uppercased()
+                    cell.lbl_CategoryName.text = ApiUtillity.sharedInstance.getLanguageData(key: "lbl_view_posts").uppercased()
                 }
             }
             else if indexPath.section == 1 {

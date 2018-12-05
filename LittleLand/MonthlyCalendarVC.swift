@@ -160,7 +160,7 @@ class MonthlyCalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSou
         self.tableview_Events.reloadData()
         
         let params = ["action":"get", "uid":ApiUtillity.sharedInstance.getUserData(key: "uid"), "type":ApiUtillity.sharedInstance.getLoginType(), "month":month, "year":year, "lan":ApiUtillity.sharedInstance.getCurrentLanguageName()] as [String : Any]
-        
+        print(params)
         Alamofire.request(ApiUtillity.sharedInstance.API(Join: "event_action.php"), method: .post, parameters: params, encoding: URLEncoding.default).responseJSON { response in
             debugPrint(response)
             self.isCallApi = false

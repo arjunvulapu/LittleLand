@@ -174,15 +174,15 @@ class ViewPostVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.lbl_DescName.text = ((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "title") as! String)
         cell.lbl_Time.text = ((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "stamp") as! String)
         cell.imageview_Post.kf.indicatorType = .activity
-        print(((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "type") as! String))
+       // print(((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "type") as! String))
         //cell.imageview_Post.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
-        if(((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "type") as! String) == "video"){
-            cell.imageview_Post.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
-
-        }else{
-            cell.imageview_Post.transform = CGAffineTransform(rotationAngle:0);
-
-        }
+//        if(((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "type") as! String) == "video"){
+//            cell.imageview_Post.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
+//
+//        }else{
+//            cell.imageview_Post.transform = CGAffineTransform(rotationAngle:0);
+//
+//        }
         cell.imageview_Post.kf.setImage(with: URL(string: ((viewPostArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "image") as! String)))
         
         return cell

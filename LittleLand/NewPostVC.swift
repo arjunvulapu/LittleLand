@@ -11,7 +11,7 @@ import AVFoundation
 import Alamofire
 import MobileCoreServices
 
-class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SelectedTeachersORParentsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SelectedTeachersORParentsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIDocumentMenuDelegate,UIDocumentPickerDelegate,QBImagePickerControllerDelegate {
     
     //MARK:- Outlets
     @IBOutlet weak var lbl_Heder: UILabel!
@@ -30,7 +30,8 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
     @IBOutlet weak var lbl_AskForOpinion: UILabel!
     @IBOutlet weak var imageview_AskForOpinion: UIImageView!
     @IBOutlet weak var btn_Submit: UIButton!
-    
+    var filePickedBlock: ((URL) -> Void)?
+
     
     //MARK:- Variable Declarations
     var pickerPopUp:PickerPopUpVC = PickerPopUpVC()
@@ -40,6 +41,10 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
     var ClassNChildsArray:NSMutableArray = NSMutableArray()
     var selectedIDOfTeachersNParents:String = ""
     var TeachersNParentsArray:NSMutableArray = NSMutableArray()
+    var uploadingArray:NSMutableArray = NSMutableArray()
+    var uploadingType:String = ""
+    var uploadingNumber:Int = 0
+
     var selectedFileNameOfClassNChild:String = ""
     var selectedFileTypeOfClassNChild:String = ""
     var isUploadImage:Bool = false
@@ -119,14 +124,7 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
         }))
         alert.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (UIAlertAction) in
             if ApiUtillity.sharedInstance.checkPermission(name: "photo", vc: self) {
-                let picker:UIImagePickerController = UIImagePickerController()
-                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                    picker.view.tintColor = ApiUtillity.sharedInstance.getColorIntoHex(Hex: "DD6855")
-                    picker.delegate = self
-                    picker.allowsEditing = true
-                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-                    self.present(picker, animated: true, completion: nil)
-                }
+                self.selectMultipleImages()
             }
         }))
         alert.addAction(UIAlertAction(title: "Capture Video", style: .default, handler: { (UIAlertAction) in
@@ -144,15 +142,12 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
         }))
         alert.addAction(UIAlertAction(title: "Videos", style: .default, handler: { (UIAlertAction) in
             if ApiUtillity.sharedInstance.checkPermission(name: "photo", vc: self) {
-                let picker:UIImagePickerController = UIImagePickerController()
-                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                    picker.view.tintColor = ApiUtillity.sharedInstance.getColorIntoHex(Hex: "DD6855")
-                    picker.delegate = self
-                    picker.allowsEditing = true
-                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-                    picker.mediaTypes = [kUTTypeMovie as String]
-                    self.present(picker, animated: true, completion: nil)
-                }
+               self.selectMultipleVideos()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "PDF", style: .default, handler: { (UIAlertAction) in
+            if ApiUtillity.sharedInstance.checkPermission(name: "photo", vc: self) {
+                self.documentPicker()
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -164,7 +159,18 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
         }
         self.present(alert, animated: true, completion: nil)
     }
-    
+    //MARK: - FILE PICKER
+    func documentPicker(){
+        let importMenu = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF)], in: .import)
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        if #available(iOS 11.0, *) {
+            importMenu.allowsMultipleSelection = true
+        } else {
+            // Fallback on earlier versions
+        }
+        self.present(importMenu, animated: true, completion: nil)
+    }
     @IBAction func btn_Handler_DeleteSelectedImage(_ sender: UIButton) {
         selectedImagesArrayOfTeachersNParents.removeObject(at: sender.tag)
         collectionview_ImageSelection.reloadData()
@@ -359,7 +365,7 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
                 if (dict.value(forKey: "success") != nil) {
                     let success:NSMutableDictionary = (dict.value(forKey: "success") as! NSDictionary).mutableCopy() as! NSMutableDictionary
                     self.selectedFileNameOfClassNChild = success.value(forKey: "name") as! String
-                    self.selectedImagesArrayOfTeachersNParents.add(["name":success.value(forKey: "name") as! String, "full_path":success.value(forKey: "full_path") as! String, "media_type":resourceName])
+                    self.selectedImagesArrayOfTeachersNParents.add(["name":success.value(forKey: "name") as! String, "full_path":success.value(forKey: "thumb") as! String, "media_type":resourceName])
                     self.collectionview_ImageSelection.reloadData()
                     
                     ApiUtillity.sharedInstance.dismissSVProgressHUD()
@@ -373,7 +379,87 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
             }
         }
     }
+    func uploadTeachersORParentsResourcesFile(resourceName:String, image:String, video:String) {
+        let url = NSURL(string: ApiUtillity.sharedInstance.API(Join: "upload_file.php"))
+        
+        let request = NSMutableURLRequest(url: url! as URL)
+        request.httpMethod = "POST"
+        
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let image_data = (resourceName == "image" ? try! Data(contentsOf: URL(string: image)!) : try! Data(contentsOf: URL(string: video)!))
+        if(image_data == nil) {
+            return
+        }
+        
+        let body = NSMutableData()
+        
+//        let name = (resourceName == "image" ? "IMAGE_\(arc4random_uniform(10000)).png" : "VIDEO_\(arc4random_uniform(10000)).mp4")
+//        let mimetype = (resourceName == "image" ? "image/png" : "video/mp4")
+        var name = "ar1234"
+        var mimetype = "file"
+        
+        if(resourceName != "file"){
+         name = (resourceName == "image" ? "IMAGE_\(arc4random_uniform(10000)).png" : "VIDEO_\(arc4random_uniform(10000)).mp4")
+         mimetype = (resourceName == "image" ? "image/png" : "video/mp4")
+        }
+        //define the data post parameter
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"file\"; filename=\"\(name)\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(image_data)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
+        
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+        
+        request.httpBody = body as Data
+        
+        DispatchQueue.main.async {
+            self.isUploadImage = true
+            self.btn_Submit.isUserInteractionEnabled = false
+            self.collectionview_ImageSelection.reloadData()
+        }
+        
+        Alamofire.request(request as URLRequest).responseJSON { (response) in
+            self.isUploadImage = false
+            self.btn_Submit.isUserInteractionEnabled = true
+            self.collectionview_ImageSelection.reloadData()
+            if let json = response.result.value {
+                print("JSON: \(json)")
+                let dict:NSDictionary = (json as? NSDictionary)!
+                
+                if (dict.value(forKey: "success") != nil) {
+                    let success:NSMutableDictionary = (dict.value(forKey: "success") as! NSDictionary).mutableCopy() as! NSMutableDictionary
+                    self.selectedFileNameOfClassNChild = success.value(forKey: "name") as! String
+                    self.selectedImagesArrayOfTeachersNParents.add(["name":success.value(forKey: "name") as! String, "full_path":success.value(forKey: "thumb") as! String, "media_type":resourceName])
+                    self.collectionview_ImageSelection.reloadData()
+                    if(self.uploadingArray.count-1 > self.uploadingNumber){
+                        self.uploadingNumber = self.uploadingNumber+1
+                        if(self.uploadingType == "image"){
+                            self.uploadTeachersORParentsResourcesFile(resourceName: "image", image: String(format:"%@", self.uploadingArray[self.uploadingNumber] as! CVarArg), video: "")
+                        }else if(self.uploadingType == "file"){
+                            self.uploadTeachersORParentsResourcesFile(resourceName: "file", image: "", video: self.uploadingArray[self.uploadingNumber] as! String)
+                        }else if(self.uploadingType == "video"){
+                            self.compressVideo(sourceURL:String(format:"%@", self.uploadingArray[self.uploadingNumber] as! CVarArg), completionBlock: { (compressedPath) in
+                                self.uploadTeachersORParentsResourcesFile(resourceName: "video", image: "", video: compressedPath)
+                            })
+                    }
+                    }
+                    ApiUtillity.sharedInstance.dismissSVProgressHUD()
+                
+                }
+                else {
+                    ApiUtillity.sharedInstance.dismissSVProgressHUDWithError(error: (dict.value(forKey: "error") as! String))
+                }
+            }
+            else {
+                ApiUtillity.sharedInstance.dismissSVProgressHUDWithAPIError(error: response.error! as NSError)
+            }
+        }
     
+    }
     func getSelectedTeachersORParentsIDandName(ID: String, NAME: String) {
         print(ID, NAME)
         
@@ -436,9 +522,99 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
         return true
     }
     
+    func selectMultipleImages(){
+        let imagePickerController = QBImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.mediaType = .image
+        imagePickerController.allowsMultipleSelection = true
+        imagePickerController.showsNumberOfSelectedAssets = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
     
+    func selectMultipleVideos(){
+        let imagePickerController = QBImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.mediaType = .video
+        imagePickerController.allowsMultipleSelection = true
+        imagePickerController.showsNumberOfSelectedAssets = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    func qb_imagePickerController(_ imagePickerController: QBImagePickerController?, didFinishPickingAssets assets: [Any]?) {
+        print("Selected assets:")
+        if let anAssets = assets {
+            //print("\(anAssets)")
+            uploadingArray = []
+           uploadingNumber=0
+            for asset in anAssets{
+                let check = asset as! PHAsset
+                if(check.mediaType == .image){
+                    uploadingType = "image"
+                    let imageRequestOptions = PHImageRequestOptions()
+                PHImageManager.default().requestImageData(for: asset as! PHAsset, options: imageRequestOptions, resultHandler: { imageData, dataUTI, orientation, info in
+                    if info != nil {
+                       // print("info = \(anInfo)")
+                    }
+                    if info?["PHImageFileURLKey"] != nil {
+                        
+                        let path = info?["PHImageFileURLKey"] as? URL
+                        // if you want to save image in document see this.
+                        print("path: = \(String(describing: path))")
+                         if let selectedImage2 = path {
+                            self.uploadingArray.add(selectedImage2)
+                            if(self.uploadingArray.count==1){
+                                self.uploadfirstOneInMultiple()
+                            }
+                        }
+
+                    }
+                })
+
+                }
+            else if(check.mediaType == .video){
+                      uploadingType = "video"
+                    PHImageManager.default().requestAVAsset(forVideo: check, options: nil, resultHandler: { avasset, audioMix, info in
+                        let myAsset = avasset as? AVURLAsset
+                        let data = NSData(contentsOfFile: myAsset?.url.relativePath ?? "") as Data?
+                        if data != nil {
+                        }
+                        if let thePath = myAsset?.url {
+                            print(thePath)
+                            self.uploadingArray.add(thePath)
+                            if(self.uploadingArray.count==1){
+                                self.uploadfirstOneInMultiple()
+                            }
+                         
+                        }
+                    })
+                    
+                    
+            }
+            }
+            
+          
+        }
+        
+        dismiss(animated: true)
+        
+    }
+    func uploadfirstOneInMultiple(){
+        if(uploadingType == "image"){
+            self.uploadTeachersORParentsResourcesFile(resourceName: "image", image: String(format:"%@", uploadingArray[0] as! CVarArg), video: "")
+            
+        }else{
+            self.compressVideo(sourceURL:String(format:"%@", uploadingArray[0] as! CVarArg), completionBlock: { (compressedPath) in
+                self.uploadTeachersORParentsResourcesFile(resourceName: "video", image: "", video: compressedPath)
+            })
+        }
+    }
+    func qb_imagePickerControllerDidCancel(_ imagePickerController: QBImagePickerController?) {
+        print("Canceled.")
+        
+        dismiss(animated: true)
+    }
     //MARK:- ImagePickerController Method
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+     
         let type:String = info[UIImagePickerControllerMediaType] as! String
         if type == (kUTTypeMovie as String) {
             selectedFileTypeOfClassNChild = "video"
@@ -521,5 +697,39 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedIndexOfClassNChild = row
     }
+        func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+            documentPicker.delegate = self
+            self.present(documentPicker, animated: true, completion: nil)
+        }
+        
+        
+//        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+//            print("url", url)
+////            self.filePickedBlock?(url){
+////
+////            }
+//            let path:String = String(format:"%@", url as CVarArg)
+//
+//
+//            //self.uploadTeachersORParentsResourcesFile(resourceName: "file", image: "", video: path)
+//
+//        }
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print("urls", urls)
+        uploadingArray = []
+        uploadingNumber=0
+         uploadingType = "file"
+        for  url:URL in urls{
+             let path:String = String(format:"%@", url as CVarArg)
+            uploadingArray.add(path)
+        }
+        self.uploadTeachersORParentsResourcesFile(resourceName: "file", image: "", video: uploadingArray[0] as! String)
+
+    }
+        //    Method to handle cancel action.
+        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     
 }

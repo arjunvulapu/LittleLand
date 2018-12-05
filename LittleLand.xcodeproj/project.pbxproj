@@ -194,7 +194,6 @@
 		0A60F26D1F4BF8EC007FD771 /* NewPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
 		0A60F26F1F4C36AF007FD771 /* SelectTeacherORParentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTeacherORParentsVC.swift; sourceTree = "<group>"; };
 		0A75AC9E1F276B6C0020FBF5 /* TeacherLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLoginVC.swift; sourceTree = "<group>"; };
-		0A7DCD0B1F31984C00DCD941 /* LittleLand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LittleLand.entitlements; sourceTree = "<group>"; };
 		0A7DCD101F31B0CC00DCD941 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
 		0A9DFF5B1F29E24600BD375A /* TeacherPostHederCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherPostHederCell.swift; sourceTree = "<group>"; };
 		0A9DFF5D1F29E25500BD375A /* TeacherPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherPostCell.swift; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		0ACCCC9C1F559A93000394B9 /* chat_image_text_left_cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chat_image_text_left_cell.swift; sourceTree = "<group>"; };
 		0ACCCC9E1F559A9F000394B9 /* chat_image_text_right_cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chat_image_text_right_cell.swift; sourceTree = "<group>"; };
 		0ACCCCA11F55A739000394B9 /* MyKidsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKidsVC.swift; sourceTree = "<group>"; };
+		18921EFE217DB73500CE9298 /* LittleLand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LittleLand.entitlements; sourceTree = "<group>"; };
 		6126870DB4730C0E0E521903 /* Pods_LittleLand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LittleLand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6956170CFAB94FA2CAEE2FCB /* Pods-LittleLand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleLand.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleLand/Pods-LittleLand.release.xcconfig"; sourceTree = "<group>"; };
 		92DA1322651746AD31C408E2 /* Pods-LittleLand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleLand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleLand/Pods-LittleLand.debug.xcconfig"; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		0A0D51F21F2075CB004B3FC9 /* LittleLand */ = {
 			isa = PBXGroup;
 			children = (
-				0A7DCD0B1F31984C00DCD941 /* LittleLand.entitlements */,
+				18921EFE217DB73500CE9298 /* LittleLand.entitlements */,
 				0A0D52051F207644004B3FC9 /* Model */,
 				0A0D52061F20764C004B3FC9 /* View */,
 				0A0D52071F207651004B3FC9 /* Controller */,
@@ -722,7 +722,13 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -784,6 +790,7 @@
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/QBImagePickerController/QBImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
@@ -794,6 +801,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QBImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
