@@ -87,8 +87,15 @@ class TeacherPostVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource,
     }
     
     @IBAction func btn_Handler_TableViewHeder(_ sender: UIButton) {
+        if(sender.tag == 3){
+            let vc:ViewPostVC = ApiUtillity.sharedInstance.getCurrentLanguageStoryboard().instantiateViewController(withIdentifier: "ViewPostVC") as! ViewPostVC
+            //vc.isOpenSideMenu = true
+            vc.isNews = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
         isOpenHeder = sender.tag
         tableview_Teacher.reloadData()
+        }
     }
     
     
@@ -291,10 +298,10 @@ class TeacherPostVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource,
     //MARK:- Tableview Method
     func numberOfSections(in tableView: UITableView) -> Int {
         if ApiUtillity.sharedInstance.getLoginType() == "teacher" {
-            return 3
+            return 4
         }
         else {
-            return 3
+            return 4
         }
     }
     
@@ -329,6 +336,14 @@ class TeacherPostVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource,
             cell.lbl_PostDesc.textColor = ApiUtillity.sharedInstance.getColorIntoHex(Hex: "44AD48")
         }
         else if section == 3 {
+            cell.imageview_Post.image = UIImage(named: "News")
+            cell.imageview_DropDown.image = (section == isOpenHeder ? UIImage(named: "ic_dropdown_purple_down") : UIImage(named: "ic_dropdown_purple_up"))
+            cell.lbl_PostName.text = (ApiUtillity.sharedInstance.getLoginType() == "teacher" ? ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased() : ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased())
+            cell.lbl_PostDesc.text = (ApiUtillity.sharedInstance.getLoginType() == "teacher" ? ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news_check_news_for_littleland").uppercased() : ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news_check_news_for_littleland").uppercased())
+
+            cell.lbl_PostDesc.textColor = ApiUtillity.sharedInstance.getColorIntoHex(Hex: "98759B")
+        }
+        else if section == 4 {
             cell.imageview_Post.image = UIImage(named: "ic_direct_message")
             cell.imageview_DropDown.image = (section == isOpenHeder ? UIImage(named: "ic_dropdown_purple_down") : UIImage(named: "ic_dropdown_purple_up"))
             cell.lbl_PostName.text = (ApiUtillity.sharedInstance.getLoginType() == "teacher" ? ApiUtillity.sharedInstance.getLanguageData(key: "lbl_direct").uppercased() : ApiUtillity.sharedInstance.getLanguageData(key: "lbl_direct").uppercased())

@@ -125,7 +125,7 @@ class ViewPostVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getPostByTimeWise(time_period:String) {
         var params = ["uid":ApiUtillity.sharedInstance.getUserData(key: "uid"), "class_id":selectedClassID, "action":"get_list", "time_period":time_period, "lan":ApiUtillity.sharedInstance.getCurrentLanguageName()] as [String : Any]
-        if isOpenSideMenu == true {
+        if isNews == true {
             params = ["uid":ApiUtillity.sharedInstance.getUserData(key: "uid"), "action":"get_news", "time_period":time_period, "lan":ApiUtillity.sharedInstance.getCurrentLanguageName()] as [String : Any]
         }
         ApiUtillity.sharedInstance.showSVProgressHUD(text: "")

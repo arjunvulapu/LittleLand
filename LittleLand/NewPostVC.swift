@@ -398,7 +398,7 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIP
         
 //        let name = (resourceName == "image" ? "IMAGE_\(arc4random_uniform(10000)).png" : "VIDEO_\(arc4random_uniform(10000)).mp4")
 //        let mimetype = (resourceName == "image" ? "image/png" : "video/mp4")
-        var name = "ar1234"
+        var name = "FILE_\(arc4random_uniform(10000)).pdf"
         var mimetype = "file"
         
         if(resourceName != "file"){

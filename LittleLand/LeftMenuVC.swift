@@ -34,17 +34,18 @@ class LeftMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    
+//ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased(),
+//    ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased(),
+ //   "ic_sidemenu_news",
     //MARK:- All Method
     func MFSidemenuViewDidLoad() {
         if ApiUtillity.sharedInstance.getLoginType() == "teacher" {
-            sideMenuArr = [ApiUtillity.sharedInstance.getLanguageData(key: "lbl_home").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_notifications").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_events").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_about_us").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "ibl_CONTACT_US").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_language").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_logout").uppercased()]
+            sideMenuArr = [ApiUtillity.sharedInstance.getLanguageData(key: "lbl_home").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_notifications").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_events").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_about_us").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "ibl_CONTACT_US").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_language").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_logout").uppercased()]
             sideMenuImageArr = ["ic_sidemenu_home","ic_sidemenu_notification","ic_sidemenu_events","ic_sidemenu_news","ic_sidemenu_about_us","ic_sidemenu_contact","ic_sidemenu_language","ic_sidemenu_logout"]
         }
         else {
-            sideMenuArr = [ApiUtillity.sharedInstance.getLanguageData(key: "lbl_home").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_notifications").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_events").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_news").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_MY_KIDS").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_about_us").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "ibl_CONTACT_US").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_language").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_logout").uppercased()]
-            sideMenuImageArr = ["ic_sidemenu_home","ic_sidemenu_notification","ic_sidemenu_events","ic_sidemenu_news","ic_sidemenu_kids","ic_sidemenu_about_us","ic_sidemenu_contact","ic_sidemenu_language","ic_sidemenu_language","ic_sidemenu_logout"]
+            sideMenuArr = [ApiUtillity.sharedInstance.getLanguageData(key: "lbl_home").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_notifications").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_events").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_MY_KIDS").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_about_us").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "ibl_CONTACT_US").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_language").uppercased(),ApiUtillity.sharedInstance.getLanguageData(key: "lbl_logout").uppercased()]
+            sideMenuImageArr = ["ic_sidemenu_home","ic_sidemenu_notification","ic_sidemenu_events","ic_sidemenu_kids","ic_sidemenu_about_us","ic_sidemenu_contact","ic_sidemenu_language","ic_sidemenu_language","ic_sidemenu_logout"]
         }
         imageview_User.kf.indicatorType = .activity
         imageview_User.kf.setImage(with: URL(string: ApiUtillity.sharedInstance.getUserData(key: "profile_pic")))

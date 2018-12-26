@@ -104,6 +104,8 @@
 		0ACCCC9D1F559A93000394B9 /* chat_image_text_left_cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCCC9C1F559A93000394B9 /* chat_image_text_left_cell.swift */; };
 		0ACCCC9F1F559A9F000394B9 /* chat_image_text_right_cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCCC9E1F559A9F000394B9 /* chat_image_text_right_cell.swift */; };
 		0ACCCCA21F55A739000394B9 /* MyKidsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCCCA11F55A739000394B9 /* MyKidsVC.swift */; };
+		181D2A0621B9350700C32CFD /* WebViwerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D2A0521B9350700C32CFD /* WebViwerViewController.swift */; };
+		181D2A0821B9388900C32CFD /* PdfViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D2A0721B9388900C32CFD /* PdfViewerVC.swift */; };
 		DBC0F40180A37DA0AA236010 /* Pods_LittleLand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6126870DB4730C0E0E521903 /* Pods_LittleLand.framework */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +212,8 @@
 		0ACCCC9C1F559A93000394B9 /* chat_image_text_left_cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chat_image_text_left_cell.swift; sourceTree = "<group>"; };
 		0ACCCC9E1F559A9F000394B9 /* chat_image_text_right_cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chat_image_text_right_cell.swift; sourceTree = "<group>"; };
 		0ACCCCA11F55A739000394B9 /* MyKidsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKidsVC.swift; sourceTree = "<group>"; };
+		181D2A0521B9350700C32CFD /* WebViwerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViwerViewController.swift; sourceTree = "<group>"; };
+		181D2A0721B9388900C32CFD /* PdfViewerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfViewerVC.swift; sourceTree = "<group>"; };
 		18921EFE217DB73500CE9298 /* LittleLand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LittleLand.entitlements; sourceTree = "<group>"; };
 		6126870DB4730C0E0E521903 /* Pods_LittleLand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LittleLand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6956170CFAB94FA2CAEE2FCB /* Pods-LittleLand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleLand.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleLand/Pods-LittleLand.release.xcconfig"; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				0A286C021F515051005C8268 /* ContactUsVC.swift */,
+				181D2A0521B9350700C32CFD /* WebViwerViewController.swift */,
 			);
 			name = ContactUsVC;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4DCE641F50370500EB51E5 /* AboutUsVC.swift */,
+				181D2A0721B9388900C32CFD /* PdfViewerVC.swift */,
 			);
 			name = AboutUsVC;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				0A5FF37D1F4AEF3F009D145D /* chat_image_right_cell.swift in Sources */,
 				0A0EB6631F53E4D00033E3D0 /* NotificationImageCell.swift in Sources */,
 				0A026EAE1F56DEC200991F87 /* FSPageViewLayout.swift in Sources */,
+				181D2A0621B9350700C32CFD /* WebViwerViewController.swift in Sources */,
 				0ACCCCA21F55A739000394B9 /* MyKidsVC.swift in Sources */,
 				0A60F26E1F4BF8EC007FD771 /* NewPostVC.swift in Sources */,
 				0A026ED71F56F05D00991F87 /* SKPagingScrollView.swift in Sources */,
@@ -896,6 +903,7 @@
 				0A0D520C1F209382004B3FC9 /* ApiUtillity.swift in Sources */,
 				0A2DCD9E1F4EB5DD0077E2C8 /* FindTeacherORParentsVC.swift in Sources */,
 				0A0B15251F220CBC0091F343 /* MonthlyCalendarVC.swift in Sources */,
+				181D2A0821B9388900C32CFD /* PdfViewerVC.swift in Sources */,
 				0A026ECA1F56F05D00991F87 /* UIImage+Rotation.swift in Sources */,
 				0A0D52151F209441004B3FC9 /* UITableViewVibrantCell.swift in Sources */,
 				0A0B151D1F21F9110091F343 /* ViewPostDetailsVC.swift in Sources */,

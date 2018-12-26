@@ -212,6 +212,16 @@ class ViewPostDetailsVC: UIViewController, UICollectionViewDelegate, UICollectio
 
             imageView_Post.isHidden = false
             view_Video.isHidden = false
+        }else{
+            //imageView_Post.isHidden = true
+            //view_Video.isHidden = false
+            
+            imageView_Post.kf.indicatorType = .activity
+            imageView_Post.kf.setImage(with: URL(string: ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "thumb") as! String)))
+            imageView_Post.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
+            
+//            imageView_Post.isHidden = false
+//            view_Video.isHidden = false
         }
         
         return cell
@@ -223,7 +233,27 @@ class ViewPostDetailsVC: UIViewController, UICollectionViewDelegate, UICollectio
             vc.resource_Name = "video"
             vc.video_Url = ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "path") as! String)
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "media_type") as! String) == "file" {
+//            let vc:PlayResourcesVC = ApiUtillity.sharedInstance.getCurrentLanguageStoryboard().instantiateViewController(withIdentifier: "PlayResourcesVC") as! PlayResourcesVC
+//            vc.resource_Name = "video"
+//            vc.video_Url = ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "path") as! String)
+//            self.navigationController?.pushViewController(vc, animated: true)
+            
+//            guard let url = URL(string: ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "path") as! String)) else {
+//                return //be safe
+//            }
+            let vc:PdfViewerVC = ApiUtillity.sharedInstance.getCurrentLanguageStoryboard().instantiateViewController(withIdentifier: "PdfViewerVC") as! PdfViewerVC
+            vc.pdfUrl = ((imageArray.object(at: indexPath.row) as! NSDictionary).value(forKey: "path") as! String);
+            self.navigationController?.pushViewController(vc, animated: true)
+//            if #available(iOS 10.0, *) {
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            } else {
+//                UIApplication.shared.openURL(url)
+//            }
+
         }
+        
+        
         else {
             var images = [SKPhoto]()
             var currentIndex:Int = 0
