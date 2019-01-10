@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LittleLand/NewPostVC.swift"
-            timestampString = "565785196.701357"
+            filePath = "LittleLand/TeacherLoginVC.swift"
+            timestampString = "568802626.003267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
-            landmarkName = "uploadTeachersORParentsResourcesFile(resourceName:image:video:)"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "btn_Handler_SignIn(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LittleLand/NewPostVC.swift"
-            timestampString = "565785196.7015131"
+            filePath = "LittleLand/NotificationVC.swift"
+            timestampString = "568803928.279971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
-            landmarkName = "uploadTeachersORParentsResourcesFile(resourceName:image:video:)"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,108 +51,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LittleLand/NewPostVC.swift"
-            timestampString = "565785196.701641"
+            filePath = "LittleLand/NotificationVC.swift"
+            timestampString = "568803928.280764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "uploadTeachersORParentsResources(resourceName:image:video:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/NewPostVC.swift"
-            timestampString = "565785196.701841"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "btn_Handler_Submit(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/NewPostVC.swift"
-            timestampString = "565785196.701995"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "btn_Handler_Submit(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/ViewPostDetailsVC.swift"
-            timestampString = "565789419.490638"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "getDetailsOfPost()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/ViewPostVC.swift"
-            timestampString = "565785196.702281"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "getPostByTimeWise(time_period:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "getNotificationData()"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "LittleLand.ViewPostVC.getPostByTimeWise(time_period: Swift.String) -&gt; ()"
+                  symbolName = "LittleLand.NotificationVC.getNotificationData() -&gt; ()"
                   moduleName = "LittleLand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/HK%20PROJECTS/LittleLand/LittleLand/ViewPostVC.swift"
-                  timestampString = "565785199.335025"
+                  urlString = "file:///Users/apple/Arjun%20MAC%20Backup%202018/LittleLand/LittleLand/NotificationVC.swift"
+                  timestampString = "568803928.4396369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "1929">
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "700">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in LittleLand.ViewPostVC.getPostByTimeWise(time_period: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in LittleLand.NotificationVC.getNotificationData() -&gt; ()"
                   moduleName = "LittleLand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/HK%20PROJECTS/LittleLand/LittleLand/ViewPostVC.swift"
-                  timestampString = "565785199.341143"
+                  urlString = "file:///Users/apple/Arjun%20MAC%20Backup%202018/LittleLand/LittleLand/NotificationVC.swift"
+                  timestampString = "568803928.44231"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -163,62 +99,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LittleLand/ViewPostVC.swift"
-            timestampString = "565785196.7024291"
+            filePath = "LittleLand/NotificationVC.swift"
+            timestampString = "568804039.612915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "getPostByTimeWise(time_period:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "btn_Handler_Submit_PopUp_Remark(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/ApiUtillity.swift"
-            timestampString = "565785196.702602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "getLanguageData(key:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/ApiUtillity.swift"
-            timestampString = "565785196.703506"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "getLanguageData(key:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LittleLand/ApiUtillity.swift"
-            timestampString = "565785196.704294"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "getLanguageData(key:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LittleLand.NotificationVC.btn_Handler_Submit_PopUp_Remark(Any) -&gt; ()"
+                  moduleName = "LittleLand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Arjun%20MAC%20Backup%202018/LittleLand/LittleLand/NotificationVC.swift"
+                  timestampString = "568804039.835712"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "3360">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in LittleLand.NotificationVC.btn_Handler_Submit_PopUp_Remark(Any) -&gt; ()"
+                  moduleName = "LittleLand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Arjun%20MAC%20Backup%202018/LittleLand/LittleLand/NotificationVC.swift"
+                  timestampString = "568804039.838626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

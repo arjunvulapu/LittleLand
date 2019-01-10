@@ -331,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				18921EFE217DB73500CE9298 /* LittleLand.entitlements */,
-				0A0D52051F207644004B3FC9 /* Model */,
 				0A0D52061F20764C004B3FC9 /* View */,
 				0A0D52071F207651004B3FC9 /* Controller */,
 			);
@@ -439,6 +438,7 @@
 		0A0D522B1F20C376004B3FC9 /* ApiUtillity */ = {
 			isa = PBXGroup;
 			children = (
+				0A0D52051F207644004B3FC9 /* Model */,
 				0A0D520B1F209382004B3FC9 /* ApiUtillity.swift */,
 			);
 			name = ApiUtillity;
